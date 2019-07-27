@@ -10,8 +10,10 @@ Web-клент работает на адресе 'http://localhost:4200'.
 находящихся на сервере. Есть возможность, нажав на кнопку 'Import to database'
 импортировать в базу данных содержимое соответсвующего excel-файла,
 находящегося на сервере:
-
+![](https://github.com/archibald2406/EY-test-task2-Web-interface/blob/master/screenshots/1.png)
+![](https://github.com/archibald2406/EY-test-task2-Web-interface/blob/master/screenshots/2.png)
 
 После этого, можно просмотреть данные из базы данных соответствующего
 импортированного файла: 
-
+![](https://github.com/archibald2406/EY-test-task2-Web-interface/blob/master/screenshots/3.png)
+![](https://github.com/archibald2406/EY-test-task2-Web-interface/blob/master/screenshots/4.png)
