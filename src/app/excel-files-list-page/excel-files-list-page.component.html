@@ -1,0 +1,24 @@
+<div class="text-center" *ngIf="!isLoaded">Loading...</div>
+
+<div *ngIf="isLoaded">
+  <div class="alert-danger"  *ngIf="message">
+    {{message + ' Please, wait for about 5 minutes until the data is entered into the database.'}}
+  </div>
+  <h3>Excel files list on server:</h3>
+  <div *ngFor="let file of fileList; let i = index;">
+    <div class="list-group">
+      <span>{{ i + 1 + ': ' + file.fileName }}</span>
+
+      <button class="btn btn-oval" [disabled]="fileList[i].isImportedToDB"
+              (click)="importFileToDB(file.fileName, i)">
+        Import to db
+      </button>
+
+      <button class="btn btn-oval" *ngIf="fileList[i].isImportedToDB"
+              [disabled]="message"
+              [routerLink]="['/', file.importedFileId]">
+        Show data from db
+      </button>
+    </div>
+  </div>
+</div>

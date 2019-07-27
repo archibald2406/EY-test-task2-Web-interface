@@ -1,0 +1,3 @@
+interface ResponseMessage {
+  message: string;
+}

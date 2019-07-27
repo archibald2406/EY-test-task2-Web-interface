@@ -1,0 +1,99 @@
+<div class="text-center" *ngIf="!isLoaded">Loading...</div>
+
+<div *ngIf="isLoaded">
+  <h3 class="title">
+    <a [routerLink]="['/']"><i class="fa fa-arrow-left"></i></a>
+    <span class="sparkline bar"></span>
+  </h3>
+
+  <h3>{{ fileName }}</h3>
+
+  <table class="table-bordered">
+    <tr>
+      <td>
+        <table class="table table-bordered">
+          <tr>
+            <td class="font-weight-bold" rowspan="2">Класс</td>
+            <td class="font-weight-bold" rowspan="2">Б/сч</td>
+            <td class="font-weight-bold" colspan="2">ВХОДЯЩЕЕ САЛЬДО</td>
+          </tr>
+          <tr>
+            <td class="font-weight-bold">Актив</td>
+            <td class="font-weight-bold">Пассив</td>
+          </tr>
+
+          <tr *ngFor="let row of dataFromDb.incomingBalance; let i = index;">
+            <td class="font-weight-bold small" *ngIf="titleIsNotEqual(i, dataFromDb)"
+                [rowSpan]="getRowSpan(row.title, dataFromDb)">{{ row.title }}</td>
+            <td>{{ row.billNumber }}</td>
+            <td>{{ row.asset }}</td>
+            <td>{{ row.liability }}</td>
+          </tr>
+        </table>
+      </td>
+      <td>
+        <table class="table table-bordered">
+          <tr>
+            <td class="font-weight-bold" colspan="2">ОБОРОТЫ</td>
+          </tr>
+          <tr>
+            <td class="font-weight-bold">Дебет</td>
+            <td class="font-weight-bold">Кредит</td>
+          </tr>
+          <tr *ngFor="let row of dataFromDb.turns">
+            <td>{{ row.debit }}</td>
+            <td>{{ row.credit }}</td>
+          </tr>
+        </table>
+      </td>
+      <td>
+        <table class="table table-bordered">
+          <tr>
+            <td class="font-weight-bold" colspan="2">ИСХОДЯЩЕЕ САЛЬДО</td>
+          </tr>
+          <tr>
+            <td class="font-weight-bold">Актив</td>
+            <td class="font-weight-bold">Пассив</td>
+          </tr>
+          <tr *ngFor="let row of dataFromDb.turns">
+            <td>{{ row.debit }}</td>
+            <td>{{ row.credit }}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold" colspan="3">ГРУППОВЫЕ СЧЕТА</td>
+    </tr>
+    <tr>
+      <td>
+        <table class="table table-bordered">
+          <tr *ngFor="let row of groupedBillsList.incomingBalance; let i = index;">
+            <td class="font-weight-bold small" *ngIf="titleIsNotEqual(i, groupedBillsList)"
+                [rowSpan]="getRowSpan(row.title, groupedBillsList)">{{ row.title }}</td>
+            <td>{{ row.groupedBillNumber }}</td>
+            <td>{{ row.groupedAsset }}</td>
+            <td>{{ row.groupedLiability }}</td>
+          </tr>
+        </table>
+      </td>
+      <td>
+        <table class="table table-bordered">
+          <tr *ngFor="let row of groupedBillsList.turns">
+            <td>{{ row.groupedDebit }}</td>
+            <td>{{ row.groupedCredit }}</td>
+          </tr>
+        </table>
+      </td>
+      <td>
+        <table class="table table-bordered">
+          <tr *ngFor="let row of groupedBillsList.outcomingBalance">
+            <td>{{ row.groupedAsset }}</td>
+            <td>{{ row.groupedLiability }}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+</div>
